@@ -149,6 +149,7 @@
 	c). i = r2;  valid, i = (int) d
 
 	d). r1 = d;  invlalid, r1 and d are different types
+```
 
 2-17. What does the following code print?
 
