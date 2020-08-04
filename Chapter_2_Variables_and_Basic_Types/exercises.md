@@ -160,3 +160,66 @@
 ```
 
 	10 10
+
+2-19. Explain the key differences between pointers and references.
+
+	Reference is an alias to an object. It is not an object and there is no way to make that reference refer to a different object. Reference must be initialzed at the time it is defined.
+
+	Pointer is an object in its own right. Pointers can be assigned and copied, and a single pointer can point to several different objects over its lifetime. A pointer need not be initialized at the time it is defined. Pointers defined at block cope have undefined value if they are not initialized.
+
+2-20. What does the following program do?
+
+```
+	int i = 42;
+	int *p1 = &i;
+	*p1 = *p1 * *p1;
+```
+
+	i = 1764
+
+2-21. Explain each of the following definitions. Indicate whether any are illegal and, if so, why.
+
+```
+	int i = 0;
+```
+
+	a). double* dp = &i; Illegal, types must match.
+
+	b). int *ip = i; Illegal, cannot assign an int to a pointer.
+
+	c). int *p = &i; Legal.
+
+2-22. Assuming p is a pointer to int, explain the following code:
+
+	if (p)  // p points to an int, so it is not 0; the condition evaluates as true.
+	if (*p)  // If *p points to 0, it is false; else, it is true.
+
+2-23. Given a pointer p, can you determine whether p points to a valid object? If so, how? If not, why not?
+
+	No, we can't. Because whether pointer is valid or not is controled by ourselves. For example:
+
+```
+	int *ptr = new int (10);
+	int *ptrDup = ptr;
+
+	delete ptr;
+```
+
+2-24. Why is the initialization of p legal but that of lp illegal?
+
+```
+	int i = 42;
+	void *p = &i;
+	long *lp = &i;
+```
+
+	Because void* pointer can hold the address of any object, and the type of the object at that address is unknown.
+	But other types of pointers must match the type of the object.
+
+2-25. Determine the types and values of each of the following variables.
+
+	a). int* ip, i, &r = i;  ip is a pointer to int; i is an int; r is a reference to int.
+
+	b). int i, *ip = 0;  i is an int, ip is a nullptr to int.
+
+	c). int* ip, ip2;  ip is a pointer to int; ip2 is an int.
