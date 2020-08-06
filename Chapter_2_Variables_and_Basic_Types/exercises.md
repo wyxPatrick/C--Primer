@@ -299,3 +299,54 @@
 ```
 
 	It is illegal. Pointer can't be initialized by an int. Change to: int null = 0; *p = &null; or *p = nullptr;
+
+2-33. Using the variable definitions from this section, determine what happens in each of these assignments:
+
+	a = 42; ok
+	b = 42; ok
+	c = 42; ok
+	d = 42; d is an int*, error
+	e = 42; e is const int*, error
+	f = 42; f is const int, error
+
+2-35. Determine the types deduced in each of the following definitions. Once you've figured out the types, write a program to see whether you were correct.
+
+```
+	const int i = 42;
+	auto j = i; const auto &k = i; auto *p = &i;
+	const auto j2 = i, &k2 = i;
+```
+	
+	j is int, k is reference to const int, p is pointer to const int, j2 is const int, k2 is reference to const int.
+
+2-36. In the following code, determine the type of each variable and the value each variable has when the code finishes:
+
+```
+	int a = 3, b = 4;
+	decltype(a) c = a;
+	decltype((b)) d = a;
+	++c;
+	++d;
+```
+
+	a: int, b: int, c: int, d: int&
+
+2-37. Assignment is an example of an expression that yields a reference type. The type is a reference to the type of the left-hand operand. That is, if i is an int, then the type of the expression i = x is int&. Using that knowledge, determine the type and value of each variable in this code:
+
+```
+	int a = 3, b = 4;
+	decltype(a) c = a;
+	decltype(a = b) d = a;
+```
+
+	a: int, 3; b: int, 4; c: int, 3; d: int&. 3;
+
+2-38. Describe the differences in type deduction between decltype and auto. Give an example of an expression where auto and decltype will deduce the same type and an example where they will deduce differing types.
+
+	decltype will include top-level const and references, but auto will ignore them.
+	Example:
+	int i, &j = i;
+	auto a = j; // int
+	decltype(j) b; // int &
+	auto c = i;  // int 
+	decltype(i) d;  // int
