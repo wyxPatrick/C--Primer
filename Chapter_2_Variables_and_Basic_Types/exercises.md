@@ -223,3 +223,79 @@
 	b). int i, *ip = 0;  i is an int, ip is a nullptr to int.
 
 	c). int* ip, ip2;  ip is a pointer to int; ip2 is an int.
+
+2-26. Which of the following are legal? For those that are illegal, explain why.
+
+	a). const int buf;  Illegal, because buf is not initialized.
+
+	b). int cnt = 0;  Legal.
+
+	c). const int sz = cnt;  Legal.
+
+	d). ++cnt; ++sz;  Illegal, sz is const type, so its value cannot be changed.
+
+2-27. Which of the following initializations are legal? Explain why.
+
+	a). int i = -1, &r = 0;  Illegal, initializer of a reference must be an object.
+
+	b). int *const p2 = &i2;  Legal. p2 will always point to i2.
+
+	c). const int i = -1, &r = 0; Legal. const &r = 0 is legal!
+
+	d). const int *const p3 = &i2;  Legal. p2 will always point to a const int i2.
+
+	e). const int *p1 = &i2;  Legal. p1 points to const int i2.
+
+	f). const int &const r2;  Illegal. There is no type of &const.
+
+	g). const int i2 = i, &r = i;  Legal. i2 is a const int and r is a reference to const.
+
+2-28. Explain the following definitions. Identify any that are illegal.
+
+	a). int i, *const cp;  Illegal. Pointer to const must be initialized.
+
+	b). int *p1, *const p2;  Illegal. Pointer to const must be initialized.
+
+	c). const int ic, &r = ic;  Illegal. ic must be initialized beacuse it is a const.
+
+	d). const int *const p3;  Illegal. Pointer to const must be initialized.
+
+	e). const int *p;  Legal. p points to a const int object.
+
+2-29. Using the variables in the previous exercise, which of the following assignments are legal? Explain why.
+
+	a). i = ic;  Legal. const int can define a int object.
+
+	b). p1 = p3;  Illegal. int* cannot be initialized by const int*.
+
+	c). p1 = &ic;  Illegal. int* cannot point to a const int object.
+
+	d). p3 = &ic;  Illegal. The address stored in p3 cannot be changed.
+
+	e). p2 = p1;  Illegal. The address stored in p2 cannot be changed.
+
+	f). ic = *p3;  Illegal. ic is const whose value cannot be changed.
+
+2-30. For each of the following declarations indicate whether the object being declared has top-level or low-level const.
+
+```
+	const int v2 = 0; int v1 = v2;
+	int *p1 = &v1, &r1 = v1;
+	const int *p2 = &v2, *const p3 = &i, &r2 = v2;
+```
+
+	v2 has a top-level const. p2 has a low-level const. p3 has both top-level const and low-level const. r2 has low-level const.
+
+2-31. Given the declarations in the previous exercise determine whether the following assignments are legal. Explain how the top-level or low-level const applies in each case.
+
+	r1 = v2;  Legal, v2 has a top-level const.
+	p1 = p2; p2 = p1;  Illegal, p2 has a low-level const, but p1 doesn't. p2 = p1 is legal.
+	p1 = p3; p2 = p3;  Illegal, p3 has a low-level const, but p1 doesn't. p2 = p3 is legal.
+
+2-32. Is the following code legal or not? If not, how might you make it legal?
+
+```
+	int null = 0, *p = null;
+```
+
+	It is illegal. Pointer can't be initialized by an int. Change to: int null = 0; *p = &null; or *p = nullptr;
