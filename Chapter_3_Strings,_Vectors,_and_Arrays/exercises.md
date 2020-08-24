@@ -64,4 +64,35 @@ vector<string> v7{10, "hi"};
 (f) size: 10, values: "".
 (g) size: 10, values: "hi".
 
+## 3-18.
+>Is the following program legal? If not, how might you fix it?
+```cpp
+vector<int> ivec;
+ivec[0] = 42;
+```
 
+It is not legal.
+```cpp
+vector<int> ivec;
+ivec.push_back(42);
+```
+
+## 3-19.
+>List three ways to define a vector and give it ten elements, each with the value 42. Indicate whether there is a preferred way to do so and why.
+
+First way:
+```cpp
+vector<int> a = {42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
+```
+
+Second way:
+```cpp
+vector<int> b(10, 42);
+```
+
+Third way:
+```cpp
+vector<int> c{42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
+```
+
+The second way is considered to be the best because it is the most concise solution.
