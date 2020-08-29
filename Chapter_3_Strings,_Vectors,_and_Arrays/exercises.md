@@ -96,3 +96,8 @@ vector<int> c{42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
 ```
 
 The second way is considered to be the best because it is the most concise solution.
+
+## 3-26.
+>In the binary search program on page 112, why did we write `mid = beg + (end - beg) / 2;` instead of `mid = (beg + end) / 2;`?
+
+There's no operator `+` for adding two iterators.
