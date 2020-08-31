@@ -101,3 +101,30 @@ The second way is considered to be the best because it is the most concise solut
 >In the binary search program on page 112, why did we write `mid = beg + (end - beg) / 2;` instead of `mid = (beg + end) / 2;`?
 
 There's no operator `+` for adding two iterators.
+
+## 3-27.
+>Assuming `txt_size` is a function that takes no arguments and returns an `int` value, which of the following definitions are illegal? Explain why.
+```cpp
+unsigned buf_size = 1024;
+int ia[buf_size];  // Illegal. buf_size is not a constant expression
+int ia[4 * 7 - 14];  // Legal.
+int ia[txt_size()];  // Illegal. txt_size() is not a constant expression
+char st[11] = "fundamental";  // Illegal. The size of st is 12, inluding the null.
+```
+
+## 3-28.
+>What are the values in the following arrays?
+```cpp
+string sa[10];  // All elements are empty strings
+int ia[10];  // All elements are zeors
+int main() {
+  string sa2[10];  // All elements are empty strings
+  int ia2[10];  // All elements are undefined
+}
+
+## 3-29.
+>List some of the drawbacks of using an array instead of a vector.
+
+1. Size if fixed at compiling time.
+2. No API as that of vector.
+3. Bug prone.
