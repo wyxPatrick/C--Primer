@@ -128,3 +128,17 @@ int main() {
 1. Size if fixed at compiling time.
 2. No API as that of vector.
 3. Bug prone.
+
+## 3-30.
+>Identify the indexing errors in the following code:
+```cpp
+constexpr size_t array_size = 10;
+int ia[array_size];
+for (size_t ix = 1; ix <= array_size; ++ix)  // Exceed the range of the array
+  ia[ix] = ix;
+```
+
+## 3-33.
+>What would happen if we did not initialize the `scores` array in the program on page 116?
+
+Values of array are undefined.
