@@ -142,3 +142,13 @@ for (size_t ix = 1; ix <= array_size; ++ix)  // Exceed the range of the array
 >What would happen if we did not initialize the `scores` array in the program on page 116?
 
 Values of array are undefined.
+
+## 3-34.
+>Given that `p1` and `p2` point to elements in the same array, what does the following code do? Are there values of `p1` or `p2` that make this code illegal?
+```cpp
+p1 += p2 - p1;
+```
+
+It moves `p1` with the offset `p2 - p1`. As long as `p1` and `p2` are legal, this operation will be legal.
+
+
