@@ -151,4 +151,22 @@ p1 += p2 - p1;
 
 It moves `p1` with the offset `p2 - p1`. As long as `p1` and `p2` are legal, this operation will be legal.
 
+## 3-37.
+>What does the following program do?
+```cpp
+const char ca[] = {'h', 'e', 'l', 'l', 'o'};
+const char *cp = ca;
+while (*cp) {
+  cout << *cp << endl;
+  ++cp;
+}
+```
+
+It will print all characters in `ca`, but it will not terminate after printing the last character in `ca`. It is because there is no null character in it.
+
+## 3-38.
+>In this section, we noted that it was not only illegal but meaningless to try to add two pointers. Why would adding two pointers be meaningless?
+
+Because there is no clear definition for addition of two pointers. It is not clear what the result represent for.
+
 
