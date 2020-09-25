@@ -53,3 +53,39 @@ b = b - 2;
 int c = 2147483647;
 c++;
 ```
+
+## 4-8.
+>Explain when operands are evaluated in the logical AND, logical OR, and equality operators.
+
+* The right side of an `&&` is evaluated if and only if the left side is `true`.
+* The right side of an `||` is evaluated if and only if the left side is `false`.
+* Operands are evaluated when they are in or can be converted to the same type for equality operators.
+
+## 4-9.
+>Explain the behavior of the condition in the following `if`:
+```cpp
+const char *cp = "Hello World";
+if (cp && *cp)
+```
+
+`cp` is a pointer to "Hello World" and it is not nullptr. `*cp` is the const char 'H' and it will return `true`. Thus, the if condition is evaluated as `true`.
+
+## 4-10.
+>Write the condition for a `while` loop that would read `ints` from the standard input and stop when the value read is equal to 42.
+
+```cpp
+int i = 0;
+while (std::cin >> i && i != 42)
+```
+
+## 4-11.
+>Write an expression that tests four values, `a`, `b`, `c`, and `d`, and ensures that `a` is greater than `b`, which is greater than `c`, which is greater than `d`.
+
+```cpp
+if (a > b && b > c && c > d)
+```
+
+## 4-12.
+>Assuming `i`, `j`, and `k` are all `int`s, explain what `i != j < k` means.
+
+It is equivalent to `i != (j < k)`.
