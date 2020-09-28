@@ -89,3 +89,46 @@ if (a > b && b > c && c > d)
 >Assuming `i`, `j`, and `k` are all `int`s, explain what `i != j < k` means.
 
 It is equivalent to `i != (j < k)`.
+
+## 4-13.
+>What are the values of `i` and `d` after each assignment?
+```cpp
+int i;
+double d;
+d = i = 3.5; // i = 3, d = 3
+i = d = 3.5; // d = 3.5, i = 3
+```
+
+## 4-14.
+>Explain what happens in each of the `if` tests:
+```cpp
+if (42 = i) // error: literals are rvalues
+if (i = 42) // evaluated as true
+```
+
+## 4-15.
+>The following assignment is illegal. Why? How would you correct it?
+```cpp
+double dval;
+int ival;
+int *pi;
+dval = ival = pi = 0;
+```
+
+Cannot assign the value of a pointer to an `int`.
+```cpp
+pi = 0;
+dval = ival = 0;
+```
+
+## 4-16.
+>Although the following are legal, they probably do not behave as the programmer expects. Why? Rewrite the expressions as you think they should be.
+```cpp
+if (p = getPtr() != 0) // it will evaluate getPtr() != 0 first
+if (i = 1024) // it is assignment rather than comparison
+```
+
+```cpp
+if ((p = getPtr()) != 0)
+if (i == 1024)
+```
