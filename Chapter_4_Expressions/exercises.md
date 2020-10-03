@@ -132,3 +132,22 @@ if (i = 1024) // it is assignment rather than comparison
 if ((p = getPtr()) != 0)
 if (i == 1024)
 ```
+
+## 4-17.
+>Explain the difference between prefix and postfix increment.
+
+Prefix increments its operand and yields the changed object as its result. The postfix operator increments the operand but yield a copy of the original, unchanged value as its result.
+
+## 4-18.
+>What would happen if the `while` loop on page 148 that prints then elements from a `vector` used the prefix increment operator?
+
+We would dereference the incremented value, skip the first element, and even attempt to dereference one too many elements if the sequence had no negative values.
+
+## 4-19.
+>Given the `ptr` points to an `int`, that `vec` is a `vector<int>`, and that `ival` is an `int`, explain the behavior of each of these expressions. Which, if any, are likely to be incorrect? Why? How might each be corrected?
+```cpp
+ptr != 0 && *ptr++;  // Check if the pointer is a nullptr. If it is not, then check the value it points to
+ival++ && ival;  // Check if ival is 0. If it is not, then check the value of ival incremented by 1
+vec[ival++] <= vec[ival];  // Error! **Undefined behavior**
+// correct:
+vec[ival] <= vec[ival+1];
