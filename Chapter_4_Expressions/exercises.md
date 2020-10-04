@@ -151,3 +151,13 @@ ival++ && ival;  // Check if ival is 0. If it is not, then check the value of iv
 vec[ival++] <= vec[ival];  // Error! **Undefined behavior**
 // correct:
 vec[ival] <= vec[ival+1];
+
+## 4-20.
+>Assuming that `iter` is a `vector<string>::iterator`, indicate which, if any, of the following expressions are legal. Explain the behavior of the legal expressions and why those aren't legal are in error.
+```cpp
+*iter++;  // *iter, then ++iter
+(*iter)++;  // illegal, *iter is a string
+*iter.empty();  // illegal, iter doesn't have member function empty()
+iter->empty();  // indicate whether iter is empty or not
+++*iter;  // illegal, string can't be incremented
+iter++->empty();  // iter->empty(), then ++iter
