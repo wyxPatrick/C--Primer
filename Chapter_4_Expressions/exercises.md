@@ -161,3 +161,29 @@ vec[ival] <= vec[ival+1];
 iter->empty();  // indicate whether iter is empty or not
 ++*iter;  // illegal, string can't be incremented
 iter++->empty();  // iter->empty(), then ++iter
+
+## 4-22.
+>Extend the program that assigned high pass, pass, and fail grades to also assign low pass for grades between 60 and 75 inclusive. Write two versions: One version that uses only conditional operators; the other should use one or more `if` statements. Which version do you think is easier to understand and why?
+
+The latter one is easier to understand. Because it shows more details about the conditions.
+
+## 4-23.
+>The following expression fails to compile due to operator precedence. Using Table 4.12 (p.166), explain why it fails. How would you fix it?
+```cpp
+string s = "word";
+string pl = s + s[s.size() - 1] == 's' ? "" : "s";
+```
+
+`+` has higher precedence. To fix it:
+```cpp
+string pl = s + (s[s.size() - 1] == 's' ? "" : "s");
+```
+
+## 4-24.
+>Our program that distinguished between high pass, pass, and fail depended on the fact that the conditional operator is right associative. Describe how that operator would be evaluated if the operator were left associative.
+
+It will be evaluated as 
+```cpp
+finalgrade = ((grade > 90) ? "high pass" : (grade < 60)) ? "fail" : "pass";
+```
+If `grade > 90`, finalgrade will alwasy be "fail".
