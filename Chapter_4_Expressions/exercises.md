@@ -187,3 +187,23 @@ It will be evaluated as
 finalgrade = ((grade > 90) ? "high pass" : (grade < 60)) ? "fail" : "pass";
 ```
 If `grade > 90`, finalgrade will alwasy be "fail".
+
+## 4-25.
+>What is the value of `~'q' << 6` on a machine with 32-bit `int`s and 8 bit `char`s, that uses Latin-1 character set in which 'q' has the bit pattern 01110001?
+
+The final value in decimal is `-7296`.
+
+## 4-26.
+>In our grading example in this section, what would happen if we used `unsigned int` as the type for `quiz1`?
+
+The minimum range of `unsigned int` is 2^0 to 2 ^31. Some implementations use only 16 bits which could cause undefined behavior.
+
+## 4-27.
+>What is the result of each of these expressions?
+```cpp
+unsigned long ul1 = 3, ul2 = 7;
+ul1 & ul2 // 3
+ul1 | ul2 // 7
+ul1 && ul2 // true
+ul1 || ul2 // true
+```
