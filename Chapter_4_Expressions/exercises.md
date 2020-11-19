@@ -207,3 +207,22 @@ ul1 | ul2 // 7
 ul1 && ul2 // true
 ul1 || ul2 // true
 ```
+
+## 4-29.
+>Predict the output of the following code and explain your reasoning. Now run the program. Is the output what you expected? If not, figure out why.
+```cpp
+int x[10]; int *p = x;
+cout << sizeof(x)/sizeof(*x) << endl;
+cout << sizeof(p)/sizeof(*p) << endl;
+```
+
+First result is 10. It returns the number of elements in x.
+Second result is undefined.
+
+## 4-30.
+>Using Tabel 4.12 (p.166), parenthesize the following expressions to match the default evaluation:
+```cpp
+sizeof x + y  // (sizeof x) + y
+sizeof p->mem[i]  // sizeof(p->mem[i])
+sizeof a < b  // sizeof(a) < b
+sizeof f()  // If `f()` returns `void`, this statement is undefined. Otherwise it returns the size of the returned type.
