@@ -225,4 +225,38 @@ Second result is undefined.
 sizeof x + y  // (sizeof x) + y
 sizeof p->mem[i]  // sizeof(p->mem[i])
 sizeof a < b  // sizeof(a) < b
-sizeof f()  // If `f()` returns `void`, this statement is undefined. Otherwise it returns the size of the returned type.
+sizeof f()  // If `f()` returns `void`, this statement is undefined. Otherwise it returns the size of the returned type.	
+
+## 4-31.
+>The program in this section used the prefix increment and decrement operators. Explain why we used prefix and not postfix. What changes would have to be made to use the postfix versions? Rewrite the program using postfix operators.
+
+We use prefix because of the advice from this book. Using prefix is a good habits. No need to change the program.
+```cpp
+vector<int>::size_type cnt = ivec.size();
+for(vector<int>::size_type ix = 0; ix != ivec.size(); ix++, cnt--)
+  ivec[ix] = cnt;
+```
+
+## 4-32.
+>Explain the following loop.
+```cpp
+constexpr int size = 5;
+int ia[size] = {1,2,3,4,5};
+for (int *ptr = ia, ix = 0; ix != size && ptr != ia+size; ++ix, ++ptr) {}
+```
+`ptr` and `ix` perform the same. They both traverse the entire array `ia`.
+
+## 4-33.
+>Using Table 4.12 (p.166) explain what the following expression does:
+```cpp
+someValue ? ++x, ++y : --x, --y
+```
+
+Comma operator has the lowest precedence, thus the expression is same as:
+```cpp
+(someValue ? ++x, ++y : --x), --y
+
+If `someValue` is true, then `++x`, and the result is `y`, if someValue is false, then `--x`, and the result is `--y`. So it is the same as:
+```cpp
+someValue ? (++x, y) : (--x, --y);
+```
