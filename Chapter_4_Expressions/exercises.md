@@ -260,3 +260,28 @@ If `someValue` is true, then `++x`, and the result is `y`, if someValue is false
 ```cpp
 someValue ? (++x, y) : (--x, --y);
 ```
+
+## 4-34.
+>Given the variable definitions in this section, explain what conversions take place in the following expressions:
+```cpp
+if (fval)  // fval converted to `bool`
+dval = fval + ival  // ival converted to `float`, then the result converted to `double`
+dval + ival * cval  // cval promoted to `int`, then the result converted to `double`
+```
+
+## 4-35.
+>Given the following definitions,
+```cpp
+char cval;
+int ival;
+unsigned int ui;
+float fval;
+double dval;
+```
+identify the implicit type conversions, if any, taking place:
+```cpp
+cval = `a` + 3;  // 'a' promoted to `int`, then the result converted to `char`
+fval = ui - ival * 1.0; // ival converted to `double`, ui also converted to `double`. Then the result converted to `float`
+dval = ui * fval;  // ui converted to `float`, then the result converted to `double`
+cval = ival + fval + dval;  // ival converted to `int`, then the result of 'ival + fval' converted to `double. Then the total result converted to `char`
+```
