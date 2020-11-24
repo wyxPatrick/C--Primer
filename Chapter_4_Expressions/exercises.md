@@ -285,3 +285,32 @@ fval = ui - ival * 1.0; // ival converted to `double`, ui also converted to `dou
 dval = ui * fval;  // ui converted to `float`, then the result converted to `double`
 cval = ival + fval + dval;  // ival converted to `int`, then the result of 'ival + fval' converted to `double. Then the total result converted to `char`
 ```
+
+## 4-36.
+>Assuming `i` is an `int` and `d` is a `double` write the expression ```i *= d``` so that it does integral, rather than floating-point, multiplication.
+
+```cpp
+i *= static_cast<int>(d)
+```
+
+## 4-37.
+>Rewrite each of the following old-style casts to use a named cast:
+```cpp
+int i;
+double d;
+const string *ps;
+char *pc;
+void *pv;
+pv = (void*)ps;  // pv = const_cast<string*>(ps)
+i = int(*pc);  // i = static_cast<int>(*pc)
+pv = &d;  // pv = static_cast<void*>(&d)
+pc = (char*)pv;  // pc = static_cast<char*>(pv)
+```
+
+## 4-38.
+>Explain the following expression:
+```cpp
+double slope = static_cast<double>(j/i);
+```
+
+Convert (j/i) to double then assign the result to slope.
