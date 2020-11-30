@@ -14,3 +14,11 @@ A block is also referred to as a compound statement. It is a (possibly empty) se
 ```cpp
 while (val <= 10 && (sum += val, ++val)) ;
 ```
+
+## 5-4.
+>Explain each of the following examples, and correct any problems you detect.
+```cpp
+while (string::iterator iter != s.end()) {}  // execute the block as long as iter is at the end of s
+while (bool status = find(word)) {}  // should be `bool status == find(word)`
+if (!status) {}  // `status` is not accessible
+```
