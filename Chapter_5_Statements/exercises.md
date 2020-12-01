@@ -22,3 +22,9 @@ while (string::iterator iter != s.end()) {}  // execute the block as long as ite
 while (bool status = find(word)) {}  // should be `bool status == find(word)`
 if (!status) {}  // `status` is not accessible
 ```
+
+## 5-8.
+>What is a "dangling else"? How are `else` clauses resolved in C++?
+
+Dangling else is a problem that there is more `if` branches than `else` branches and we want to know which `if` a given `else` belongs.
+In C++ the ambiguity is resolved by specifying that each `else` is matched with the closest preceding unmatched `if`.
