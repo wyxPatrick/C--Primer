@@ -117,4 +117,27 @@ while (i < 10)
 ```
 In this case, I prefer to use the `for` loop because it is easy to forget include the increment of i in the while loop.
 
+## 5-18.
+>Explain each of the following loops. Correct any problems you detect.
+```cpp
+// The following loop intends to add up two numbers which are input from keyboard.
+// Need to add bracket for do block.
+do
+  int v1, v2;
+  cout << "Please enter two numbers to sum:";
+  if (cin >> v1 >> v2)
+    cout << "Sum is: " << v1 + v2 << endl;
+while (cin);
 
+// The following loop intends to execute the statement inside the loop while there is a response from get_response().
+// `do while` loop does not allow variable definitions inside the condition.
+do {
+  // ...
+} while (int ival = get_response());
+
+// The following loop intends to execute the statement inside the loop while there is a response from get_response().
+// ival is not declared in this scope.
+do {
+  int ival = get_response();
+} while (ival);
+```
