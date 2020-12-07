@@ -76,3 +76,45 @@ switch (swt) {
     bufsize = kval * sizeof(int);
     break;
 }
+```
+
+## 5-15.
+>Explain each of the following loops. Correct any problems you detect.
+```cpp
+// The following for loop initializes an int ix = 0, and this loop will be executed as long as ix is not equal to sz.
+// Then ix will be incremented by one after each loop.
+for (int ix = 0; ix != sz; ++ix) { }
+if (ix != sz)  // Error. ix is only accessable inside the for loop.
+
+// The following for loop is intended to be executed while ix is not equal to sz. But the initializer is missing.
+int ix;
+for (ix != sz; ++ix) { } // Missing the initializer. Should be `for (; ix != sz; ++ix)`
+
+// The following for loop initializes an int ix = 0, and this loop will be executed as long as ix is not equal to sz.
+// Then ix and sz will both be incremented by one after each loop.
+for (int ix = 0; ix != sz; ++ix, ++sz) { }
+```
+
+## 5-16.
+>The `while` loop is particularly good at executing while some condition holds; for example, when we need to read values until end-of-file. The `for` loop is generally thought of as a step loop: An index steps through a range of values in a collection. Write an idiomatic use of each loop and then rewrite each using the other loop construct. If you could use only one loop, which would you choose? Why?
+
+```cpp
+while (cin >> i)
+  v.push_back(i);
+
+for (int i; cin >> i;)
+  v.push_back(i);
+```
+In this case, I prefer to use the `while` loop because it is more concise and clear.
+
+```cpp
+for (int i = 0; i < 10; i++)
+  v.push_back(i);
+
+while (i < 10)
+  v.push_back(i);
+  i++;
+```
+In this case, I prefer to use the `for` loop because it is easy to forget include the increment of i in the while loop.
+
+
