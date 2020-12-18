@@ -1,6 +1,8 @@
-#include <iostream>
+// #include <iostream>
 
-using namespace std;
+// using namespace std;
+
+#include "Chapter6.h"
 
 int absoluteValue(int val) {
     if (val < 0) {
