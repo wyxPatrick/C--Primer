@@ -105,7 +105,23 @@ sum(vec.begin(), vec.end(), 3.8);  // legal
 ```
 
 ## 6-20.
-When should reference parameters be references to `const`? What happens if we make a parameter a plain reference when it could be a reference to `const`?
+>When should reference parameters be references to `const`? What happens if we make a parameter a plain reference when it could be a reference to `const`?
 
 Use reference to `const` whenever it is possible.
 If we make a parameter a plain reference, then we cannot pass a `const` object, a literal, and we may risk changing its value.
+
+## 6-24.
+>Explain the behavior of the following function. If there are problems in the code, explain what they are and how you might fix them.
+```cpp
+void print(const int ia[10])
+{
+  for (size_t i = 0; i != 10; ++i)
+    cout << ia[i] << endl;
+}
+```
+
+The function intends to loop through a array with size of 10 and print out each of its elements. But there is a problem in the code and we need to fix it as follows:
+```cpp
+void print(const int (&ia)[10]) {}
+```
+Because originally, we only passed in the pointer to the first element of the array.
