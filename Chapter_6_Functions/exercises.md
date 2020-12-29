@@ -125,3 +125,13 @@ The function intends to loop through a array with size of 10 and print out each 
 void print(const int (&ia)[10]) {}
 ```
 Because originally, we only passed in the pointer to the first element of the array.
+
+## 6-28.
+>In the second version of `error_msg` that has an `ErrCode` parameter, what is the type of `elem` in the `for` loop?
+
+The type is `const string &`.
+
+## 6-29.
+>When you use an `initializer_list` in a range `for` would you ever use a reference as the loop control variable? If so, why? If not, why not?
+
+Yes, I would do that. Because using `const` can avoid copying the value of each element in the `initializer_list`.
