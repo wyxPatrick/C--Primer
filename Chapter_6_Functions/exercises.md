@@ -135,3 +135,34 @@ The type is `const string &`.
 >When you use an `initializer_list` in a range `for` would you ever use a reference as the loop control variable? If so, why? If not, why not?
 
 Yes, I would do that. Because using `const` can avoid copying the value of each element in the `initializer_list`.
+
+## 6-31.
+>When is it valid to return a reference? A reference to `const`?
+
+When you can find the preexisted object that the reference refered.
+
+## 6-32.
+>Indicate whether the following function is legal. If so, explain what it doesl; if not, correct any errors and then explain it.
+```cpp
+int &get(int *arry, int index) {return arry[index];}
+int main() {
+  int ia[10];
+  for (int i = 0; i != 10; ++i) {
+    get(ia, i) = i;
+  }
+}
+```
+Legal. It returns the values of elements in the array.
+
+## 6-34.
+>What would happen if the stopping condition in `factorial` were
+```cpp
+if (val != 0)
+```
+
+If the argument is negative, this code contains a recursion loop.
+
+## 6-35.
+>In the call to `factorial`, why did we pass `val - 1` rather than `val--`?
+
+Due to the precedence of operator. If we use `val--`, then the argument passed in the function will always be `val`.
