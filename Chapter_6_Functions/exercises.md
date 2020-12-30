@@ -166,3 +166,32 @@ If the argument is negative, this code contains a recursion loop.
 >In the call to `factorial`, why did we pass `val - 1` rather than `val--`?
 
 Due to the precedence of operator. If we use `val--`, then the argument passed in the function will always be `val`.
+
+## 6-36.
+>Write the declaration for a function that returns a reference to an array of ten `strings`, without using either a trailing return, `decltype`, or a type alias.
+
+```cpp
+string (&func(string (&arr_str)[10]))[10]
+```
+
+## 6-37.
+>Write three additional declarations for the function in the previous exercise. One should use a type alias, one should use a trailing return, and the third should use `decltype`. Which form do you prefer and why?
+
+```cpp
+using arrT = string[10];
+arrT& func1(arrT& arr);
+
+auto func2(arrT& arr) -> string(&)[10];
+
+string arrS[10];
+decltype(arrS) &func3(arrT& arr);
+```
+
+## 6-38.
+>Revise the `arrPtr` function on to return a reference to the array.
+
+```cpp
+decltype(arr) &arrPtr(int i) {
+  return (i % 2) ? odd : even;
+}
+```
