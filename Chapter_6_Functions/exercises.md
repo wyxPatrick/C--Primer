@@ -195,3 +195,16 @@ decltype(arr) &arrPtr(int i) {
   return (i % 2) ? odd : even;
 }
 ```
+
+## 6-39.
+>Explain the effect of the second declaration in each one of the following sets of declarations. Indicate which, if any, are illegal.
+```cpp
+int calc(int, int);
+int calc(const int, const int);  // Illegal. Because top-level const has no effect on the objects that can be passed to the function
+
+int get();
+double get();  // Illegal. Because it is an error for two functions to differ only in terms of their return types.
+
+int *reset(int *);
+double *reset(double *);  // Legal.
+```
