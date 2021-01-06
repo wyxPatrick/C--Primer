@@ -208,3 +208,19 @@ double get();  // Illegal. Because it is an error for two functions to differ on
 int *reset(int *);
 double *reset(double *);  // Legal.
 ```
+
+## 6-40.
+>Which, if either, of the following declarations are errors? Why?
+```cpp
+int ff(int a, int b = 0, int c = 0;
+char *init(int ht = 24, int wd, char bckgrnd);  // Error. If a parameter has a default argument, all the parameters that follow it must also have default arguments.
+```
+
+## 6-41.
+>Which, if any, of the following calls are illegal? Why? Which, if any, are legal but unlikely to match the programmer's intent? Why?
+```cpp
+char *init(int ht, int wd = 80, char bckgrnd = ' ');
+init();  // Illegal. Because parameter ht needs a value
+init(24, 10);  // Legal
+init(14, '*');  // Illegal. wd is an int but passed in a char
+```
