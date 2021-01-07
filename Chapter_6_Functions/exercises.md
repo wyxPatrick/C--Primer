@@ -224,3 +224,19 @@ init();  // Illegal. Because parameter ht needs a value
 init(24, 10);  // Legal
 init(14, '*');  // Illegal. wd is an int but passed in a char
 ```
+
+## 6-43.
+>Which one of the following declarations and definitions would you put in a header? In a source file? Explain why.
+```cpp
+inline bool eq(Const BigInt&, const BigInt&) {...}  // I would put both declaration and definition of this function in a header file because this is suggested
+void putValues(int *arr, int size);  // I would put declaration in header file and put definition in source file
+```
+
+## 6-45.
+>Review the programs you've written for the earlier exercises and decide whether they should be defined as `inline`. If so, do so. If not, explain why they should not be `inline`.
+
+Exercise 6.43 should be defined as inline since the function is short and using `inline` will save more time.
+
+## 6-46.
+>Would it be possible to define `isShorter` as a `constexpr`? If so, do so. If not, explain why not.
+No, because a `constexpr` function body may contain other statements so long as those statements generate no actions at run time. But `isShorter` has `size()` which will be called at run time.
