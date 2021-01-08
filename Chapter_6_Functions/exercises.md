@@ -240,3 +240,14 @@ Exercise 6.43 should be defined as inline since the function is short and using 
 ## 6-46.
 >Would it be possible to define `isShorter` as a `constexpr`? If so, do so. If not, explain why not.
 No, because a `constexpr` function body may contain other statements so long as those statements generate no actions at run time. But `isShorter` has `size()` which will be called at run time.
+
+## 6-48.
+>Explain what this loop does and whether it is a good use of `assert`:
+```cpp
+string s;
+while (cin >> s && s != sought) { }  // empty body
+assert(cin);
+```
+
+This loop continues to read a string and compare it with `sought`, and the loop will terminate either find the end of the stream, or find an element equals to `sought`.
+It is not a good use of `assert` because after the loop, `cin` will return `false` for sure and there is no need to use `assert` to check.
