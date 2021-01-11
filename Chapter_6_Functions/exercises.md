@@ -251,3 +251,32 @@ assert(cin);
 
 This loop continues to read a string and compare it with `sought`, and the loop will terminate either find the end of the stream, or find an element equals to `sought`.
 It is not a good use of `assert` because after the loop, `cin` will return `false` for sure and there is no need to use `assert` to check.
+
+## 6-49.
+>What is a candidate function? What is a viable function?
+
+Candidate functions are the set of overloaded functions considered for the call.
+Viable functions are selected functions can be called with the arguments in the given call.
+
+## 6-50.
+>Given the declarations for `f` from page 242, list the viable functions, if any for each of the following calls. Indicate which function is the best match, or if the call is illegal whether there is no match or why the call is ambiguous.
+
+```cpp
+f(2.56, 42)
+```
+`f(int, int)` and `f(double, double)` are viable functions. There is no best match because `int` and `double` can be converted to each other. There is no one function better than the other.
+
+```cpp
+f(42)
+```
+`f(int)` and `f(double, double)` are viable functions. `f(int)` is the best match.
+
+```cpp
+f(42, 0)
+```
+`f(int, int)` and `f(double, double)` are viable functions. `f(int, int)` is the best match.
+
+```cpp
+f(2.56, 3.14)
+```
+`f(int, int)` and `f(double, double)` are viable functions. `f(double, double)` is the best match.
