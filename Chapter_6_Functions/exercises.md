@@ -280,3 +280,28 @@ f(42, 0)
 f(2.56, 3.14)
 ```
 `f(int, int)` and `f(double, double)` are viable functions. `f(double, double)` is the best match.
+
+## 6-52.
+>Given the following declarations,
+```cpp
+void manip(int, int);
+double dobj;
+```
+what is the rank of each conversion in the following calls?
+
+```cpp
+manip('a', 'z');  // 3rd rank, match through a promotion
+manip(55.4, dobj);  // 4th rank, match through an arithmetic conversion
+
+## 6-53.
+>Explain the effect of the second declaration in each one of the following sets of declarations. Indicate which, if any, are illegal.
+```cpp
+int calc(int&, int&);
+int calc(const int&, const int&);  // legal function to be called with const reference
+
+int calc(char*, char*);
+int calc(const char*, const char*);  // legal function to be called with const pointer
+
+int calc(char*, char*);
+int calc(char* const, char* const);  // illegal, top-level const is ignored
+```
