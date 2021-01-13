@@ -305,3 +305,22 @@ int calc(const char*, const char*);  // legal function to be called with const p
 int calc(char*, char*);
 int calc(char* const, char* const);  // illegal, top-level const is ignored
 ```
+
+## 6-56.
+>Call each element in the `vector` and print their result.
+Called foo(1, 2)
+Called bar(3, 4)
+Called foo(9, 9)
+Called bar(9, 9)
+
+2 0
+Called add(2, 0)
+2
+Called subtract(2, 0)
+2
+Called multiply(2, 0)
+0
+Called divied(2, 0)
+Divide by 0.
+0
+
