@@ -78,3 +78,119 @@ Pros:
 Cons:
 
   - The code will look redundant.
+
+## 7-33.
+>What would happen if we gave `Screen` a `size` member defined as follows? Fix any problems you identify.
+```cpp
+pos Screen::size() const
+{
+    return height * width;
+}
+```
+
+The return type `pos` is a member `typedef` of class `Screen`, thus it needs the scope operator `Screen::pos`.
+
+## 7-34.
+>What would happen if we put the `typedef` of `pos` in the `Screen` class on page 285 as the last line in the class?
+
+Then every usage of `pos` would be an error because of lacking definition.
+
+## 7-35.
+>Explain the following code, indicating which definition of `Type` or `initVal` is used for each use of those names. Say how you would fix any errors.
+```cpp
+typedef string Type;
+Type initVal();  // std::string
+class Exercise {
+public:
+    typedef double Type;
+    Type setVal(Type);  // double setVal(double)
+    Type initVal();  // double initVal()
+private:
+    int val;
+};
+Type Exercise::setVal(Type parm) {  // double Exercise::setVal(double para)
+    val = parm + initVal();
+    return val;
+}
+```
+
+## 7-36.
+>The following initializer is in error. Identify and fix the problem.
+```cpp
+struct X {
+    X (int i, int j) : base(i), rem(base % j) { }
+    int rem, base;
+};
+```
+
+The order of member initialization is the same with the order they appear in the class definition. Since `rem` appears first, it will be initialized first. But the value of `base` is undefined when `rem` is initialized, thus the value of `rem` is undefined. To fix the problem, we can either switch the order of definitions of `rem` and `base` or we can use the constructor parameters `i` and `j` direct initialize `rem(i % j)`.
+
+## 7-37.
+>Using the version of `Sales_data` from this section, determine which constructor is used to initialized each of the following variables and list the values of the data members in each object:
+```cpp
+Sales_data first_item(cin);  // Sales_data(std::istream& is);
+int main() {
+    Sales_data next;  // Sales_data(std::string s = "");
+    Sales_data last("9-999-99999-9");  // Sales_data(std::string s = "");
+}
+```
+
+As listed in comments above.
+
+## 7-39.
+>Would it be legal for both the constructor that takes a `string` and the one that takes an `istream&` to have default arguments? If not, why not?
+
+It is illegal for both constructors to have default arguments. If then, there will be two default constructors, and that's an error.
+
+## 7-40.
+>Choose one of the following abstractions (or an abstraction of your own choosing). Determine what data are needed in the class. Provide an appropriate set of constructors. Explain your decisions.
+(a) Book  (b) Data  (c) Employee
+(d) Vehicle  (e) Object  (f) Tree
+
+(a) Book
+```cpp
+class Book {
+public:
+    Book() : isbn(""), name(""), author(), publish_year(0), publisher(""), version(0) {}
+    Book(const std::string& i, const std::string& n, const std::vector<std::string>& au, unsigned y, const std::string& p = "", unsigned v = 1) : isbn(i), name(n), author(au), publish_year(y), publisher(p), version(v) {}
+    Book(std::istream& is) {
+        is >> isbn >> name;
+        std::string s;
+        is >> s;
+        author.push_back(s);
+        is >> publish_year >> publisher >> version;
+    }
+private:
+    std::string isbn;
+    std::string name;
+    std::vector<std::string> author;
+    unsigned publish_year;
+    std::string publisher;
+    unsigned version;
+};
+```
+
+## 7-42.
+>For the class you wrote for exercise 7.40 in section 7.5.1 (p. 291), decide whether any of the constructors might use delegation. If so, write the delegating constructor(s) for your class. If not, look at the list of abstractions and choose one that you think would use a delegating constructor. Write the class definition for that abstraction.
+
+```cpp
+class Book {
+public:
+    Book() : Book("", "", std::vector<std::string>(), 0, "", 0) {}
+    Book(const std::string& i, const std::string& n, const std::vector<std::string>& au, unsigned y, const std::string& p = "", unsigned v = 1) : isbn(i), name(n), author(au), publish_year(y), publisher(p), version(v) {}
+    Book(std::istream& is) {
+        is >> isbn >> name;
+        std::string s;
+        is >> s;
+        author.push_back(s);
+        is >> publish_year >> publisher >> version;
+    }
+private:
+    std::string isbn;
+    std::string name;
+    std::vector<std::string> author;
+    unsigned publish_year;
+    std::string publisher;
+    unsigned version;
+};
+```
