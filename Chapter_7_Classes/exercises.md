@@ -194,3 +194,84 @@ private:
     unsigned version;
 };
 ```
+
+## 7-44.
+>Is the following declaration legal? If not, why not?
+```cpp
+vector<NoDefault> vec(10);
+```
+
+It is illegal, the constructor of `vector` taken a single number will call the default constructor of elements to value initialize its elements, but the class of the elements `NoDefault` does not have a default constructor, thus the code will not compile.
+
+## 7-45.
+>What if we defined the `vector` in the previous exercise to hold objects of type C?
+
+Then the code ```vector<C> vec(10);``` is legal.
+
+## 7-46.
+>Which, if any, of the following statements are untrue? Why?
+  (a) A class must provide at least one constructor.
+  (b) A default consturctor is a constructor with an empty parameter list.
+  (c) If there are no meaningful default values for a class, the class should not provide a default constructor.
+  (d) If a class does not define a default constructor, the compiler generates one that initializes each data member to the default value of its associated type.
+
+  (a) True. If the programmer doesn't provide any constructor, the compiler will synthesise one default constructor.
+  (b) False. A constructor of which all parameters have default values also defines a default constructor.
+  (c) False. If no constructor defined, there will always be a default constructor.
+  (d) False. Only if a class does not define **any constructors**, will the compiler generate synthesised default constructor.
+
+## 7-47.
+>Explain whether the `Sales_data` constructor that takes a `string` should be `explicit`. What are the benefits of making the constructor `explicit`? What are the drawbacks?
+
+It should be `explicit`. Otherwise, code like `item.combine("9-999-99999-9")` will compile, but the code has no logical meaning.
+
+Making the constructor `explicit` will stop compiler from automatically converting one type to the class type, which makes the code same as anticipation.
+
+The drawback is we must call the constructor explicitly if we want to cover one type to the class type.
+
+## 7-48.
+>Assuming the `Sales_data` constructors are not `explicit`, what operations happen during the following definitions
+```cpp
+string null_isbn("9-999-99999-9");  // call string constructor
+Sales_data item1(null_isbn);  // call Sales_data constructor
+Sales_data item2("9-999-99999-9");  // first convert "9-999-99999-9" to string, then call Sales_data constructor
+```
+
+If the constructors are `explicit`, the same operations happen.
+
+## 7-49.
+>For each of the three following declarations of `combine`, explain what happens if we call `i.combine(s)`, where `i` is a `Sales_data` and `s` is a `string`:
+  (a) ```Sales_data &combine(Sales_data);```  // Correct. It will first convert `s` to `Sales_data`, then copy that temporary into the parameter of `combine`.
+  (b) ```Sales_data &combine(Sales_data&);```  // Wrong. It will first convert `s` to `Sales_data`, then pass the reference to that temporary into the parameter of `combine`, but passing a reference to a temporary is error.
+  (c) ```Sales_data &combine(const Sales_data&) const;  // Wrong and will not compile, because it should not be a const member function. It will first convert `s` to `Sales_data`, then pass the const reference to that temporary into the parameter of `combine`.
+
+## 7-51.
+>Why do you think `vector` defines its single-argument constructor as `explicit`, but `string` does not?
+
+Because semantically speaking, a number is different from a vector, but a char array is the same as string.
+
+## 7-54.
+>Should the members of `Debug` that begin with `set_` be declared as `constexpr`? If not, why not?
+
+No, becuase the function contains excutable statement other than `return`.
+
+## 7-55.
+>Is the `Data` class from section 7.5.5 (p.298) a literal class? If not, why not? If so, explain why it is literal.
+
+No, because std::string is not a literal type.
+
+## 7-56.
+>What is a `static` class member? What are the advantages of `static` members? How do they differ from ordinary members?
+
+A `static` class member is a member that is associated with the class, rather than with individual objects of the class type. It exists outside any object of the class.
+
+Advantages:
+
+  - Storage efficient.
+  - If a `static` member of a class changes, each object of the class will use the new value of that `static` member.
+  - A `static` data member can have incomplete type.
+  - A `static` member (either a data member or a member function) can be used as a default argument.
+
+Differences between ordinary members and `static` members:
+
+  - A `static` member belongs to the class, an ordinary member belongs to objects of the class.
