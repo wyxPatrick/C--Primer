@@ -54,3 +54,18 @@ list<int>::iterator iter1 = lst1.begin(), iter2 = lst1.end();
 while (iter1 < iter2) /* ... */
 ```
 
+Fixed:
+```cpp
+while (iter1 != iter2)
+```
+Operator `<` is not implemented in `std::list` because `std::list` is essentially a doubly linked list. Addresses of nodes of linked list are not necessarily continuous.
+
+## 9-7.
+>What type should be used as the index into a `vector` of `int`s?
+
+`std::vector<int>::size_type`.
+
+## 9-8.
+>What type should be used to read elements in a `list` of `string`s? To write them?
+
+We can used `std::list<std::string>::const_iterator` or `std::list<std::string>::iterator` to read elements, and use `std::list<std::string>::iterator` to write them.
