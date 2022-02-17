@@ -69,3 +69,21 @@ Operator `<` is not implemented in `std::list` because `std::list` is essentiall
 >What type should be used to read elements in a `list` of `string`s? To write them?
 
 We can used `std::list<std::string>::const_iterator` or `std::list<std::string>::iterator` to read elements, and use `std::list<std::string>::iterator` to write them.
+
+## 9-9.
+>What is the difference between the `begin` and `cbegin` functions?
+
+`cbegin` is a const member that returns the container's `const_iterator` type.
+`begin` is nonconst and returns the container's `iterator` type.
+
+## 9-10.
+>What are the types of the following four objects?
+```cpp
+vector<int> v1;
+const vector<int> v2;
+auto it1 = v1.begin(), it2 = v2.begin();
+auto it3 = v1.cbegin(), it4 = v2.cbegin();
+```
+
+`it1` is `vector<int>::iterator`.
+`it2`, `it3` and `it4` are `vector<int>::const_iterator`.
