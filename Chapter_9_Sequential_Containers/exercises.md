@@ -87,3 +87,58 @@ auto it3 = v1.cbegin(), it4 = v2.cbegin();
 
 `it1` is `vector<int>::iterator`.
 `it2`, `it3` and `it4` are `vector<int>::const_iterator`.
+
+## 9-11.
+>Show an example of each of the six ways to create and initialize a `vector`. Explain what values each `vector` contains.
+
+```cpp
+vector<int> v1;  // empty
+vector<int> v2(v1);  // empty
+vector<int> v3 = v1;  // empty
+vector<int> v4{1, 2, 3};  // 3 elements: 1, 2, 3
+vector<int> v5 = {1, 2, 3};  // 3 elements: 1, 2, 3
+vector<int> v6(v5.begin(), v5.end());  // 3 elements: 1, 2, 3
+vector<int> v7(5);  // 5 elements: 0, 0, 0, 0, 0
+vector<int> v8(5, 1);  // 5 elements: 1, 1, 1, 1, 1
+```
+
+## 9-12.
+>Explain the differences between the constructor that takes a container to copy and the constructor that takes two iterators.
+
+The constructor that takes a container to copy requires the container type and the element type of the two containers are both match exactly.
+The constructor that takes two iterators requires the element type of the source container must be compatible with the element type of the destiny container.
+For example:
+```cpp
+#include <vector>
+#include <list>
+
+struct A {
+};
+
+struct B {
+  B(A a) {}  // type A can convert to type B
+};
+
+int main() {
+  std::vector<A> va;
+  std::vector<B> vb;
+
+  std::list<A> la(vb.begin(), vb.end());  // Error, convert B to A
+  std::list<B> lb(va.begin(), va.end());  // OK, convert A to B
+
+  return 0;
+}
+```
+
+The requirement of the former constructor is stricter than the latter.
+
+## 9-17.
+>Assuming `c1` and `c2` are containers, what (if any) constraints does the following usage place on the types of `c1` and `c2`?
+```cpp
+if (c1 < c2)
+```
+
+The constraints are:
+
+  1. The lefthand and righthand operands must have the same container type and element type.
+  2. The element of the container must support the `<` operator.
