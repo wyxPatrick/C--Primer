@@ -142,3 +142,29 @@ The constraints are:
 
   1. The lefthand and righthand operands must have the same container type and element type.
   2. The element of the container must support the `<` operator.
+
+## 9-21.
+>Explain how the loop from page 345 that used the return from `insert` to add elements to a `list` would work if we inserted into a `vector` instead.
+
+The member function `insert(p, t)` has the same effect on both `list` and `vector` containers, but the cost is different. Inserting an element into `list` is cheap, while inserting an element into `vector` will cause all the elements after the newly inserted element be moved. Thus every time the `while` loop body is executed, all elements in the `vector` are moved backward, and new element is inserted in the front of the `vector`.
+
+## 9-22.
+>Assuming `iv` is a `vector` of `int`s, what is wrong with the following program? How might you correct the problem(s)?
+```cpp
+vector<int>::iterator iter = iv.begin(), mid = iv.begin() + iv.size() / 2;
+while (iter != mid)
+  if (*iter == some_val)
+    iv.insert(iter, 2 * some_val);  // Error, we should update the iterator
+```
+
+```cpp
+vector<int>::iterator iter = iv.begin(), mid = iv.begin() + iv.size() / 2;
+while (iter != mid) {
+  if (*iter == some_val) {
+    iter = iv.insert(iter, 2 * some_val);
+    ++iter;
+  }
+  ++iter;
+}
+```
+
