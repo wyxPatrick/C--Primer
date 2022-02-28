@@ -172,3 +172,10 @@ while (iter != mid) {
 >In the first program in this section on page 346, what would the values of `val`, `val2`, `val3`, and `val4` be if `c.size()` is 1?
 
 Same value that equals to the first element.
+
+## 9-25.
+>In the program on page 349 that erased a range of elements, what happens if `elem1` and `elem2` are equal? What if `elem2` or both `elem1` and `elem2` are the off-the-end iterator?
+
+  - If `elem1` and `elem2` are equal, nothing will be deleted.
+  - If `elem2` is the off-the-end iterator, elements from `elem1` to the end will be deleted.
+  - If `elem1` and `elem2` are both off-the-end iterators, nothing will be deleted.
