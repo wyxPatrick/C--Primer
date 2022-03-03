@@ -192,3 +192,72 @@ vec.resize(10);  // erases 90 elements from the back of vec
 >What, if any, restrictions does using the version of `resize` that takes a single argument place on the element type?
 
 If the container holds elements of a class type and resize adds elements we **must supply an initializer** or the element type must have a **default constructor**.
+
+## 9-31.
+>The program on page 354 to remove even-valued elements and duplicate odd ones will not work on a `list` or `forward_list`. Why? Revise the program so that it works on these types as well.
+
+List doesn't support iterator arithmetic.
+
+```cpp
+for (auto cur = data.begin(); cur != data.end();)
+  if (*cur & 0x1)
+    cur = data.insert(cur, *cur), advance(cur, 2);
+  else
+    cur = data.erase(cur);
+```
+
+```cpp
+for (auto cur = data.begin(), prv = data.before_begin(); cur != data.end();)
+  if (*cur & 0x1)
+    cur = data.insert_after(prv, *cur),
+    advance(cur, 2);
+    advance(prv, 2);
+  else
+    cur = data.erase_after(prv);
+```
+
+## 9-32.
+>In the program on page 354 would it be legal to write the call to `insert` as follows? If not, why not?
+```cpp
+iter = vi.insert(iter, *iter++);
+```
+
+It is illegal, because the iterator will be invalidated.
+
+## 9-33.
+>In the final example in this section what would happen if we did not assign the result of `insert` to `begin`? Write a program that omits this assignment to see if your expectation was correct.
+
+The program will crase, because the iterator will be invalidated after the insertion.
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using std::vector; using std::cout; using std::endl;
+
+int main() {
+  vector<int> v{1, 2, 3, 4, 5, 6, 7, 8, 9};
+  auto begin = v.begin();
+  while (begin != v.end()) {
+    ++begin;
+    v.insert(begin, 42);
+    ++begin;
+  }
+  for (auto i : v)
+    cout << i << " ";
+  return 0;
+}
+```
+
+## 9-34.
+>Assuming `vi` is a container of `int`s that includes even and odd values, predict the behavior of the following loop. After you've analyzed this loop, write a program to test whether your expectations were correct.
+```cpp
+iter = vi.begin();
+while (iter != vi.end())
+  if (*iter % 2)
+    iter = vi.insert(iter, *iter);
+  ++iter;
+```
+
+Infinite loop.
+
