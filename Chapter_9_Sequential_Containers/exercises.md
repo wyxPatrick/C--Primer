@@ -179,3 +179,16 @@ Same value that equals to the first element.
   - If `elem1` and `elem2` are equal, nothing will be deleted.
   - If `elem2` is the off-the-end iterator, elements from `elem1` to the end will be deleted.
   - If `elem1` and `elem2` are both off-the-end iterators, nothing will be deleted.
+
+## 9-29.
+>Given that `vec` holds 25 elements, what does `vec.resize(100)` do? What if we next wrote `vec.resize(10)`?
+
+```cpp
+vec.resize(100);  // adds 75 elements of value 0 to the back of vec
+vec.resize(10);  // erases 90 elements from the back of vec
+```
+
+## 9-30.
+>What, if any, restrictions does using the version of `resize` that takes a single argument place on the element type?
+
+If the container holds elements of a class type and resize adds elements we **must supply an initializer** or the element type must have a **default constructor**.
