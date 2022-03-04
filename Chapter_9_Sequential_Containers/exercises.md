@@ -261,3 +261,42 @@ while (iter != vi.end())
 
 Infinite loop.
 
+## 9-35.
+>Explain the difference between a `vector`s `capacity` and its `size`.
+
+The `size` of a container is the number of **elements** it already holds;
+The `capacity` is how many elements it can hold before more **space** must be allocated.
+
+## 9-36.
+>Can a container have a `capacity` less than its `size`?
+
+No, it can't.
+
+## 9-37.
+>Why don't `list` or `array` have a `capacity` member?
+
+`list` does not hold elements contiguously. `array` has the fixed size statically.
+
+## 9-39.
+>Explain what the following program fragment does:
+```cpp
+vector<string> svec;
+svec.reserve(1024);
+string word;
+while (cin >> word)
+  svec.push_back(word);
+svec.resize(svec.size() + svec.size() / 2);
+```
+The `while` loop will read words from `cin` and store them in the vector. Even if we initially reserved 1024 elements, if there are more words read from `cin`, out vector's capacity will be automatically increased (most implementations will double the previous capacity) to accommodate them.
+
+And now comes the catch. `resize()` is different from `reserve()`. In this case, `resize()` will add another `svec.size()/2` value initialized elements to `svec`. If this exceeds `svec.capacity()` it will also automatically increase it to accommodate the new elements.
+
+## 9-40.
+If the program in the previous exercise reads 256 words, what is its likely `capacity` after it is `resize`d? What if it reads 512? 1,000? 1,048?
+
+read | size | capacity
+------ | ------ | ------
+256 | 384 | 1024
+512 | 768 | 1024
+1000 | 1500 | 2000 (clang is 2048)
+1048 | 1572 | 2048
