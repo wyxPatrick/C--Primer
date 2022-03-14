@@ -305,3 +305,8 @@ read | size | capacity
 >Given that you want to read a character at a time into a `string`, and you know that you need to read at least 100 characters, how might you improve the performance of your program?
 
 Use member `reserve(120)` to allocate enough space for this string.
+
+## 9-48.
+>Given the definitions of `name` and `numbers` on page 365, what does `numbers.find(name)` return?
+
+string::npos
