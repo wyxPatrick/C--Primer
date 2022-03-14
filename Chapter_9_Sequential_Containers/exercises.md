@@ -292,7 +292,7 @@ The `while` loop will read words from `cin` and store them in the vector. Even i
 And now comes the catch. `resize()` is different from `reserve()`. In this case, `resize()` will add another `svec.size()/2` value initialized elements to `svec`. If this exceeds `svec.capacity()` it will also automatically increase it to accommodate the new elements.
 
 ## 9-40.
-If the program in the previous exercise reads 256 words, what is its likely `capacity` after it is `resize`d? What if it reads 512? 1,000? 1,048?
+>If the program in the previous exercise reads 256 words, what is its likely `capacity` after it is `resize`d? What if it reads 512? 1,000? 1,048?
 
 read | size | capacity
 ------ | ------ | ------
@@ -300,3 +300,8 @@ read | size | capacity
 512 | 768 | 1024
 1000 | 1500 | 2000 (clang is 2048)
 1048 | 1572 | 2048
+
+## 9-42.
+>Given that you want to read a character at a time into a `string`, and you know that you need to read at least 100 characters, how might you improve the performance of your program?
+
+Use member `reserve(120)` to allocate enough space for this string.
