@@ -7,3 +7,24 @@ The type of the third argument determines which + operator is used and is the ty
 >In the call to `equal` on rosters, what would happen if both rosters held C-style strings, rather than library `string`s?
 
 Then it will compare the address of two C-style strings, but not their values.
+
+## 10-7.
+>Determine if there are any errors in the following programs and, if so, correct the error(s):
+(a)
+```cpp
+vector<int> vec; list<int> lst; int i;
+while(cin >> i)
+  lst.push_back(i);
+copy(lst.cbegin(), lst.cend(), lst.begin());  // copy(lst.cbegin(), lst.cend(), back_inserter(vec));
+```
+(b)
+```cpp
+vector<int> vec;
+vec.reserve(10);
+fill_n(vec.begin(), 10, 0);  // no error
+```
+
+## 10-8.
+>We said that algorithms do not change the size of the containers over which they operate. Why doesn't the use of `back_inserter` invalidate this claim?
+
+Inserters like `back_inserter` is part of `<iterator>` rather than `<algorithm>`.
