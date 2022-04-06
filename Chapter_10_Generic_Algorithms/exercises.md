@@ -28,3 +28,10 @@ fill_n(vec.begin(), 10, 0);  // no error
 >We said that algorithms do not change the size of the containers over which they operate. Why doesn't the use of `back_inserter` invalidate this claim?
 
 Inserters like `back_inserter` is part of `<iterator>` rather than `<algorithm>`.
+
+## 10-10.
+>Why do you think the algorithms don't change the size of containers?
+
+We pass only iterators to algorithms, not containers, so the algorithms have no direct access to the container members. If we want to change the size of a container, we must do it by calling the container members. Thus the algorithms cannot change the size of containers.
+
+Insert container, however, has access to container members when we pass the container to it. Thus it can change the size of containers.
